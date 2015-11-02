@@ -1,0 +1,17 @@
+{
+  "name": "studenttrack_angular2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "angular2": "^2.0.0-alpha.45",
+    "live-server": "^0.8.2",
+    "systemjs": "^0.19.5",
+    "tsc": "^1.20150623.0"
+  }
+}
