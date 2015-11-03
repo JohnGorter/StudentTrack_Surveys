@@ -2,17 +2,17 @@
 <head>	
 	<script src="../node_modules/systemjs/dist/system.src.js"></script>
 	<script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
+	<link rel="stylesheet" href="./palette.css"></link>
 	
 </head>
 <body>
 	<studenttrack-survey></studenttrack-survey>
 </body>
-
 <script>
-	  System.config({
-    		packages: {'app': {defaultExtension: 'js'}}
-  	  });
-  	  System.import('app/app');
+	System.config({
+    packages: {'app': {defaultExtension: 'js'}}
+  });
+  System.import('app/app');
+
 </script>
-	
 </html>
