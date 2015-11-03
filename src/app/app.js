@@ -1,4 +1,4 @@
-System.register(['angular2/angular2'], function(exports_1) {
+System.register(['angular2/angular2', './models/student'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
         switch (arguments.length) {
@@ -10,32 +10,39 @@ System.register(['angular2/angular2'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var angular2_1;
+    var angular2_1, student_1;
     var SurveyApplication;
     return {
         setters:[
             function (angular2_1_1) {
                 angular2_1 = angular2_1_1;
+            },
+            function (student_1_1) {
+                student_1 = student_1_1;
             }],
         execute: function() {
             // create a class with annotations..
             SurveyApplication = (function () {
-                // ADD FIELD FOR THE STUDENTTRACK
-                // your code here...
                 function SurveyApplication() {
+                    var _this = this;
                     // ADD CODE HERE TO INSTANTIATE A NEW STUDENTTRACK
                     // AND ADD SOME STUDENTS TO THE STUDENTTRACK
                     // your code here...
+                    this.studenttrack = new student_1.studenttrack('Angular2');
+                    this.studenttrack.addStudentToTrack(new student_1.student('John', 'Gorter', 'HAN'));
+                    this.studenttrack.addStudentToTrack(new student_1.student('Harold', 'Gorter', 'HAN'));
+                    this.studenttrack.addStudentToTrack(new student_1.student('Niels', 'Gorter', 'HAN'));
                     // REPLACE THIS ANONYMOUS FUNCTION WITH A PHAT ARROW ONE
-                    var self = this;
                     window.setInterval(function () {
                         // RANDOMLY ADD NEW ATTENDEES TO THE STUDENTTRACK
                         // your code here...
+                        _this.studenttrack.addStudentToTrack(new student_1.student('Another', 'Gorter', 'HAN'));
                     }, 2000);
                 }
                 SurveyApplication.prototype.getCount = function () {
                     // ADD CODE THAT RETURNS THE NUMBER OF STUDENTS FROM THE STUDENTTRACK
                     // your code here...
+                    return this.studenttrack.getStudents().length;
                 };
                 SurveyApplication = __decorate([
                     angular2_1.Component({

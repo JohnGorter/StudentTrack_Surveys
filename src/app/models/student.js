@@ -6,7 +6,11 @@ System.register([], function(exports_1) {
             // COMPLETE THE STUDENT CLASS
             // expose firstname, lastname and school properties
             student = (function () {
-                function student() {
+                // your code here...
+                function student(firstname, lastname, school) {
+                    this.firstname = firstname;
+                    this.lastname = lastname;
+                    this.school = school;
                 }
                 return student;
             })();
@@ -14,8 +18,16 @@ System.register([], function(exports_1) {
             // COMPLETE THE STUDENTTRACK CLASS
             // expose name property, expose addStudentToTrack and getStudents methods
             studenttrack = (function () {
-                function studenttrack() {
+                function studenttrack(name) {
+                    this.name = name;
+                    this.students = Array();
                 }
+                studenttrack.prototype.addStudentToTrack = function (student) {
+                    this.students.push(student);
+                };
+                studenttrack.prototype.getStudents = function () {
+                    return this.students;
+                };
                 return studenttrack;
             })();
             exports_1("studenttrack", studenttrack);
