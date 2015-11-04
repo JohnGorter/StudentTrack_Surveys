@@ -1,20 +1,23 @@
-import {Component, bootstrap, NgFor} from 'angular2/angular2';
+import {Component, bootstrap, CORE_DIRECTIVES} from 'angular2/angular2';
+import {StudentDetails} from './components/studentdetails';
 import {student, studenttrack} from './models/student';
 
 // create a class with annotations..
 @Component({
 	selector: 'studenttrack-survey',
-	directives:[NgFor],
+	directives:[CORE_DIRECTIVES, StudentDetails],
 	template: `
-	<div class="studenttrack">
-	   <h1 class="default-primary-color text-primary-color">Studenttrack {{studenttrack.name}} (<span [text-content]="getCount()"></span> attendees)</h1>
-	   <div class="student" *ng-for="#student of studenttrack.getStudents()">
-	     {{ student.firstname }} {{ student.lastname }} {{ student.school }}
-	   </div>
+	<div class="studenttrack light-primary-color text-primary-color">
+	   <h1 class="dark-primary-color text-primary-color">Studenttrack {{studenttrack.name}} (<span [text-content]="getCount()"></span> attendees)</h1>
+	    <studentdetails 
+			[student]="student" 
+			[isSelected]="currentstudent === student"
+			*ng-for="#student of studenttrack.getStudents()" 
+			(selected)="setSelected(student)"> 
+		</studentdetails>
 	 </div>
 	`,
 	styles:[`
-	 .student { padding:15px; }
 	 .studenttrack { border:1px solid black;margin:5px;padding:0px; }
 	 .studenttrack h1 { margin:0px;padding:15px;}
 	`]
@@ -23,6 +26,8 @@ class SurveyApplication {
 	// ADD FIELD FOR THE STUDENTTRACK
 	// your code here...
 	studenttrack:studenttrack;
+	message = new Date().toString();
+	currentstudent:student;
 	
 	constructor (){
 		// ADD CODE HERE TO INSTANTIATE A NEW STUDENTTRACK
@@ -39,7 +44,20 @@ class SurveyApplication {
 		   // RANDOMLY ADD NEW ATTENDEES TO THE STUDENTTRACK
 		   // your code here...
 		   this.studenttrack.addStudentToTrack(new student('Another', 'Gorter', 'HAN'));	
+		   this.message = new Date().toString(); 
+		   
 	   }, 2000);
+	}
+	
+	setSelected(student:student){
+		console.log("student selected" + student.firstname);
+		this.currentstudent = student;
+	}
+	getClasses(student){
+		return {
+			student: true,
+			selected: this.currentstudent === student
+		}
 	}
 	
 	getCount(){
