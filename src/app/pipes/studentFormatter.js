@@ -11,7 +11,7 @@ System.register(['angular2/angular2'], function(exports_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var angular2_1;
-    var StudentDetails;
+    var StudentFormatter;
     return {
         setters:[
             function (angular2_1_1) {
@@ -19,26 +19,17 @@ System.register(['angular2/angular2'], function(exports_1) {
             }],
         execute: function() {
             // ?code? //
-            // YOUR COMPONENT ANNOTATION AND CLASS HERE...
-            StudentDetails = (function () {
-                function StudentDetails() {
-                    this.selected = new angular2_1.EventEmitter();
+            StudentFormatter = (function () {
+                function StudentFormatter() {
                 }
-                StudentDetails.prototype.setSelected = function () {
-                    this.selected.next(this.student);
-                };
-                StudentDetails = __decorate([
-                    angular2_1.Component({
-                        selector: 'studentdetails',
-                        inputs: ['student', 'isselected'],
-                        outputs: ['selected'],
-                        directives: [angular2_1.NgClass], }, template, "\n\t<div (click)=\"setSelected()\" [ng-class]=\"{defaultPrimaryColor:isselected, student:true}\" ?code? </div>\n\t"), 
+                StudentFormatter = __decorate([
+                    angular2_1.Pipe({}), 
                     __metadata('design:paramtypes', [])
-                ], StudentDetails);
-                return StudentDetails;
+                ], StudentFormatter);
+                return StudentFormatter;
             })();
-            exports_1("StudentDetails", StudentDetails);
+            exports_1("StudentFormatter", StudentFormatter);
         }
     }
 });
-//# sourceMappingURL=studentdetails.js.map
+//# sourceMappingURL=studentFormatter.js.map

@@ -1,6 +1,7 @@
 // YOUR IMPORTS HERE...
 import {Component, EventEmitter, NgClass} from 'angular2/angular2';
 import {student} from '../models/student';
+// ?code? //
 
 
 // YOUR COMPONENT ANNOTATION AND CLASS HERE...
@@ -9,8 +10,10 @@ import {student} from '../models/student';
 	inputs:['student','isselected'],
 	outputs:['selected'],
 	directives:[NgClass],
+	// ?code? //
+	,
 	template:`
-	<div (click)="setSelected()" [ng-class]="{defaultPrimaryColor:isselected, student:true}" >{{ student.firstname }} {{ student.lastname }} {{ student.school }}</div>
+	<div (click)="setSelected()" [ng-class]="{defaultPrimaryColor:isselected, student:true}" ?code? </div>
 	`
 })
 export class StudentDetails
@@ -22,4 +25,4 @@ export class StudentDetails
 	setSelected(){
 		this.selected.next(this.student); 
 	}
-}
+}	

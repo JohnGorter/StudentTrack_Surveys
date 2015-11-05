@@ -29,34 +29,19 @@ System.register(['angular2/angular2', './components/studentdetails', './models/s
                 function SurveyApplication() {
                     var _this = this;
                     this.message = new Date().toString();
-                    // ADD CODE HERE TO INSTANTIATE A NEW STUDENTTRACK
-                    // AND ADD SOME STUDENTS TO THE STUDENTTRACK
-                    // your code here...
                     this.studenttrack = new student_1.studenttrack('Angular2');
                     this.studenttrack.addStudentToTrack(new student_1.student('John', 'Gorter', 'HAN'));
                     this.studenttrack.addStudentToTrack(new student_1.student('Harold', 'Gorter', 'HAN'));
                     this.studenttrack.addStudentToTrack(new student_1.student('Niels', 'Gorter', 'HAN'));
-                    // REPLACE THIS ANONYMOUS FUNCTION WITH A PHAT ARROW ONE
                     window.setInterval(function () {
-                        // RANDOMLY ADD NEW ATTENDEES TO THE STUDENTTRACK
-                        // your code here...
                         _this.studenttrack.addStudentToTrack(new student_1.student('Another', 'Gorter', 'HAN'));
                         _this.message = new Date().toString();
                     }, 2000);
                 }
                 SurveyApplication.prototype.setSelected = function (student) {
-                    console.log("student selected" + student.firstname);
                     this.currentstudent = student;
                 };
-                SurveyApplication.prototype.getClasses = function (student) {
-                    return {
-                        student: true,
-                        selected: this.currentstudent === student
-                    };
-                };
                 SurveyApplication.prototype.getCount = function () {
-                    // ADD CODE THAT RETURNS THE NUMBER OF STUDENTS FROM THE STUDENTTRACK
-                    // your code here...
                     return this.studenttrack.getStudents().length;
                 };
                 SurveyApplication = __decorate([
