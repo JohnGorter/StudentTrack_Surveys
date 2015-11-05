@@ -1,4 +1,4 @@
-System.register(['angular2/angular2'], function(exports_1) {
+System.register(['angular2/angular2', '../pipes/studentFormatter'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
         switch (arguments.length) {
@@ -10,15 +10,17 @@ System.register(['angular2/angular2'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var angular2_1;
+    var angular2_1, studentFormatter_1;
     var StudentDetails;
     return {
         setters:[
             function (angular2_1_1) {
                 angular2_1 = angular2_1_1;
+            },
+            function (studentFormatter_1_1) {
+                studentFormatter_1 = studentFormatter_1_1;
             }],
         execute: function() {
-            // ?code? //
             // YOUR COMPONENT ANNOTATION AND CLASS HERE...
             StudentDetails = (function () {
                 function StudentDetails() {
@@ -32,7 +34,10 @@ System.register(['angular2/angular2'], function(exports_1) {
                         selector: 'studentdetails',
                         inputs: ['student', 'isselected'],
                         outputs: ['selected'],
-                        directives: [angular2_1.NgClass], }, template, "\n\t<div (click)=\"setSelected()\" [ng-class]=\"{defaultPrimaryColor:isselected, student:true}\" ?code? </div>\n\t"), 
+                        directives: [angular2_1.NgClass],
+                        pipes: [studentFormatter_1.StudentFormatter],
+                        template: "\n\t<div (click)=\"setSelected()\" [ng-class]=\"{defaultPrimaryColor:isselected, student:true}\" [inner-html] =\"student |  studentFormatter\"></div>\n\t"
+                    }), 
                     __metadata('design:paramtypes', [])
                 ], StudentDetails);
                 return StudentDetails;

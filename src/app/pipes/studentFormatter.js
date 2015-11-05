@@ -18,12 +18,16 @@ System.register(['angular2/angular2'], function(exports_1) {
                 angular2_1 = angular2_1_1;
             }],
         execute: function() {
-            // ?code? //
             StudentFormatter = (function () {
                 function StudentFormatter() {
                 }
+                StudentFormatter.prototype.transform = function (value, args) {
+                    return "<b>Naam: " + value.firstname + " " + value.lastname + "</b><br/>School: " + value.school;
+                };
                 StudentFormatter = __decorate([
-                    angular2_1.Pipe({}), 
+                    angular2_1.Pipe({
+                        name: 'studentFormatter'
+                    }), 
                     __metadata('design:paramtypes', [])
                 ], StudentFormatter);
                 return StudentFormatter;
