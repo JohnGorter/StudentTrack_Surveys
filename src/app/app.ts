@@ -1,19 +1,23 @@
 import {Component, bootstrap, CORE_DIRECTIVES} from 'angular2/angular2';
 import {StudentDetails} from './components/studentdetails';
 import {student, studenttrack} from './models/student';
+import { StudentService } from './services/studentservice';
+import { StudentTrackService } from './services/studenttrackservice';
+
 
 // create a class with annotations..
 @Component({
 	selector: 'studenttrack-survey',
 	directives:[CORE_DIRECTIVES, StudentDetails],
+	providers:[StudentService, StudentTrackService],
 	template: `
-	<div class="studenttrack light-primary-color text-primary-color">
-	   <h1 class="dark-primary-color text-primary-color">Studenttrack {{studenttrack.name}} (<span [text-content]="getCount()"></span> attendees)</h1>
-	    <studentdetails 
+	<div *ng-for="#studenttrack of studenttracks.getStudentTracks()" class="studenttrack light-primary-color text-primary-color">
+	   <h1 class="dark-primary-color text-primary-color">Studenttrack {{studenttrack.name}} (<span [text-content]="getCount(studenttrack)"></span> attendees)</h1>
+		<studentdetails 
 			[student]="student" 
-			[isSelected]="currentstudent === student"
+			[isSelected]="currentstudent === student && currenttrack === studenttrack"
 			*ng-for="#student of studenttrack.getStudents()" 
-			(selected)="setSelected(student)"> 
+			(selected)="setSelected(studenttrack, student)"> 
 		</studentdetails>
 	 </div>
 	`,
@@ -23,20 +27,22 @@ import {student, studenttrack} from './models/student';
 	`]
 })
 class SurveyApplication {	
-	studenttrack:studenttrack;
-	currentstudent:student;
 	
-	constructor (){
-	  this.studenttrack = new studenttrack("Angular2");
-	  this.studenttrack.addStudentToTrack(new student (1, 'John', 'Gorter', 'HAN'));
+	studenttracks:StudentTrackService;
+	currentstudent:student;
+	currenttrack:studenttrack;
+	
+	constructor (studenttracks: StudentTrackService){
+	  this.studenttracks = studenttracks;
 	}
 
-	setSelected(student:student){
+	setSelected(studenttrack:studenttrack, student:student){
 		this.currentstudent = student;
+		this.currenttrack = studenttrack;
 	}
 	
-	getCount(){
-		return this.studenttrack.getStudents().length;
+	getCount(studenttrack:studenttrack){
+		return studenttrack.getStudents().length;
 	}
 }
 

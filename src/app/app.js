@@ -1,4 +1,4 @@
-System.register(['angular2/angular2', './components/studentdetails', './models/student'], function(exports_1) {
+System.register(['angular2/angular2', './components/studentdetails', './services/studentservice', './services/studenttrackservice'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
         switch (arguments.length) {
@@ -10,7 +10,7 @@ System.register(['angular2/angular2', './components/studentdetails', './models/s
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var angular2_1, studentdetails_1, student_1;
+    var angular2_1, studentdetails_1, studentservice_1, studenttrackservice_1;
     var SurveyApplication;
     return {
         setters:[
@@ -20,30 +20,34 @@ System.register(['angular2/angular2', './components/studentdetails', './models/s
             function (studentdetails_1_1) {
                 studentdetails_1 = studentdetails_1_1;
             },
-            function (student_1_1) {
-                student_1 = student_1_1;
+            function (studentservice_1_1) {
+                studentservice_1 = studentservice_1_1;
+            },
+            function (studenttrackservice_1_1) {
+                studenttrackservice_1 = studenttrackservice_1_1;
             }],
         execute: function() {
             // create a class with annotations..
             SurveyApplication = (function () {
-                function SurveyApplication() {
-                    this.studenttrack = new student_1.studenttrack("Angular2");
-                    this.studenttrack.addStudentToTrack(new student_1.student(1, 'John', 'Gorter', 'HAN'));
+                function SurveyApplication(studenttracks) {
+                    this.studenttracks = studenttracks;
                 }
-                SurveyApplication.prototype.setSelected = function (student) {
+                SurveyApplication.prototype.setSelected = function (studenttrack, student) {
                     this.currentstudent = student;
+                    this.currenttrack = studenttrack;
                 };
-                SurveyApplication.prototype.getCount = function () {
-                    return this.studenttrack.getStudents().length;
+                SurveyApplication.prototype.getCount = function (studenttrack) {
+                    return studenttrack.getStudents().length;
                 };
                 SurveyApplication = __decorate([
                     angular2_1.Component({
                         selector: 'studenttrack-survey',
                         directives: [angular2_1.CORE_DIRECTIVES, studentdetails_1.StudentDetails],
-                        template: "\n\t<div class=\"studenttrack light-primary-color text-primary-color\">\n\t   <h1 class=\"dark-primary-color text-primary-color\">Studenttrack {{studenttrack.name}} (<span [text-content]=\"getCount()\"></span> attendees)</h1>\n\t    <studentdetails \n\t\t\t[student]=\"student\" \n\t\t\t[isSelected]=\"currentstudent === student\"\n\t\t\t*ng-for=\"#student of studenttrack.getStudents()\" \n\t\t\t(selected)=\"setSelected(student)\"> \n\t\t</studentdetails>\n\t </div>\n\t",
+                        providers: [studentservice_1.StudentService, studenttrackservice_1.StudentTrackService],
+                        template: "\n\t<div *ng-for=\"#studenttrack of studenttracks.getStudentTracks()\" class=\"studenttrack light-primary-color text-primary-color\">\n\t   <h1 class=\"dark-primary-color text-primary-color\">Studenttrack {{studenttrack.name}} (<span [text-content]=\"getCount(studenttrack)\"></span> attendees)</h1>\n\t\t<studentdetails \n\t\t\t[student]=\"student\" \n\t\t\t[isSelected]=\"currentstudent === student && currenttrack === studenttrack\"\n\t\t\t*ng-for=\"#student of studenttrack.getStudents()\" \n\t\t\t(selected)=\"setSelected(studenttrack, student)\"> \n\t\t</studentdetails>\n\t </div>\n\t",
                         styles: ["\n\t .studenttrack { border:1px solid black;margin:5px;padding:0px; }\n\t .studenttrack h1 { margin:0px;padding:15px;}\n\t"]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [studenttrackservice_1.StudentTrackService])
                 ], SurveyApplication);
                 return SurveyApplication;
             })();
