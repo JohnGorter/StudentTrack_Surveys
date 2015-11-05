@@ -30,11 +30,11 @@ System.register(['angular2/angular2', './components/studentdetails', './models/s
                     var _this = this;
                     this.message = new Date().toString();
                     this.studenttrack = new student_1.studenttrack('Angular2');
-                    this.studenttrack.addStudentToTrack(new student_1.student('John', 'Gorter', 'HAN'));
-                    this.studenttrack.addStudentToTrack(new student_1.student('Harold', 'Gorter', 'HAN'));
-                    this.studenttrack.addStudentToTrack(new student_1.student('Niels', 'Gorter', 'HAN'));
+                    this.studenttrack.addStudentToTrack(new student_1.student(1, 'John', 'Gorter', 'HAN'));
+                    this.studenttrack.addStudentToTrack(new student_1.student(2, 'Harold', 'Gorter', 'HAN'));
+                    this.studenttrack.addStudentToTrack(new student_1.student(3, 'Niels', 'Gorter', 'HAN'));
                     window.setInterval(function () {
-                        _this.studenttrack.addStudentToTrack(new student_1.student('Another', 'Gorter', 'HAN'));
+                        _this.studenttrack.addStudentToTrack(new student_1.student(4, 'Another', 'Gorter', 'HAN'));
                         _this.message = new Date().toString();
                     }, 2000);
                 }

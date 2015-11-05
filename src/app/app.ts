@@ -29,12 +29,12 @@ class SurveyApplication {
 	
 	constructor (){
 	   this.studenttrack = new studenttrack('Angular2');
-	   this.studenttrack.addStudentToTrack(new student('John', 'Gorter', 'HAN'));
-	   this.studenttrack.addStudentToTrack(new student('Harold', 'Gorter', 'HAN'));
-	   this.studenttrack.addStudentToTrack(new student('Niels', 'Gorter', 'HAN'));	
+	   this.studenttrack.addStudentToTrack(new student(1, 'John', 'Gorter', 'HAN'));
+	   this.studenttrack.addStudentToTrack(new student(2, 'Harold', 'Gorter', 'HAN'));
+	   this.studenttrack.addStudentToTrack(new student(3, 'Niels', 'Gorter', 'HAN'));	
 
 	   window.setInterval(() => {
-		   this.studenttrack.addStudentToTrack(new student('Another', 'Gorter', 'HAN'));	
+		   this.studenttrack.addStudentToTrack(new student(4, 'Another', 'Gorter', 'HAN'));	
 		   this.message = new Date().toString(); 
 		   
 	   }, 2000);

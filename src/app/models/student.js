@@ -7,7 +7,8 @@ System.register([], function(exports_1) {
             // expose firstname, lastname and school properties
             student = (function () {
                 // your code here...
-                function student(firstname, lastname, school) {
+                function student(id, firstname, lastname, school) {
+                    this.id = id;
                     this.firstname = firstname;
                     this.lastname = lastname;
                     this.school = school;
