@@ -5,7 +5,7 @@ import { StudentService } from './services/studentservice';
 import { StudentFormatter } from './pipes/studentformatter';
 
 @Component({  
-  selector: 'demo-form-sku',
+  selector: 'student-form',
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES],  
   pipes:[StudentFormatter],
   template: `
@@ -42,7 +42,7 @@ import { StudentFormatter } from './pipes/studentformatter';
 	 .trackform h1 { margin:0px;padding:15px;}
 	`]
 })
-export class DemoFormSku {  
+export class StudentForm {  
       studenttrackservice: StudentTrackService;
       studentservice: StudentService;
            

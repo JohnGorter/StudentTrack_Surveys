@@ -12,7 +12,7 @@ import { StudentFormatter } from '../pipes/studentFormatter';
 	directives:[NgClass],
 	pipes:[StudentFormatter],
 	template:`
-	<div><span (click)="setSelected()" [ng-class]="{defaultPrimaryColor:isselected, student:true}" [inner-html] ="student |  studentFormatter">
+	<div><span style="padding:1px;" (click)="setSelected()" [ng-class]="{defaultPrimaryColor:isselected, student:true}" [inner-html] ="student |  studentFormatter">
 	</span><button (click)="onDeleted()">remove</button></div>
 	`
 })
