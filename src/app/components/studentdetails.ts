@@ -8,11 +8,12 @@ import { StudentFormatter } from '../pipes/studentFormatter';
 @Component({
 	selector:'studentdetails',
 	inputs:['student','isselected'],
-	outputs:['selected'],
+	outputs:['selected', 'deleted'],
 	directives:[NgClass],
 	pipes:[StudentFormatter],
 	template:`
-	<div (click)="setSelected()" [ng-class]="{defaultPrimaryColor:isselected, student:true}" [inner-html] ="student |  studentFormatter"></div>
+	<div><span (click)="setSelected()" [ng-class]="{defaultPrimaryColor:isselected, student:true}" [inner-html] ="student |  studentFormatter">
+	</span><button (click)="onDeleted()">remove</button></div>
 	`
 })
 export class StudentDetails
@@ -20,8 +21,12 @@ export class StudentDetails
 	student:student;
 	isselected:boolean;
 	selected:EventEmitter = new EventEmitter();
-	 
+	deleted:EventEmitter = new EventEmitter(); 
+	
 	setSelected(){
 		this.selected.next(this.student); 
+	}
+	onDeleted(){
+		this.deleted.next(this.student); 
 	}
 }	

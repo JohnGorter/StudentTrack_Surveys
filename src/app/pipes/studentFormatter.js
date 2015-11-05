@@ -22,7 +22,7 @@ System.register(['angular2/angular2'], function(exports_1) {
                 function StudentFormatter() {
                 }
                 StudentFormatter.prototype.transform = function (value, args) {
-                    return "<b>Naam: " + value.firstname + " " + value.lastname + "</b><br/>School: " + value.school;
+                    return "<b>Naam: " + value.firstname + "</b> " + value.lastname + " School: " + value.school;
                 };
                 StudentFormatter = __decorate([
                     angular2_1.Pipe({

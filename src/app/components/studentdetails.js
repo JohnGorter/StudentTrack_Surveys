@@ -25,18 +25,22 @@ System.register(['angular2/angular2', '../pipes/studentFormatter'], function(exp
             StudentDetails = (function () {
                 function StudentDetails() {
                     this.selected = new angular2_1.EventEmitter();
+                    this.deleted = new angular2_1.EventEmitter();
                 }
                 StudentDetails.prototype.setSelected = function () {
                     this.selected.next(this.student);
+                };
+                StudentDetails.prototype.onDeleted = function () {
+                    this.deleted.next(this.student);
                 };
                 StudentDetails = __decorate([
                     angular2_1.Component({
                         selector: 'studentdetails',
                         inputs: ['student', 'isselected'],
-                        outputs: ['selected'],
+                        outputs: ['selected', 'deleted'],
                         directives: [angular2_1.NgClass],
                         pipes: [studentFormatter_1.StudentFormatter],
-                        template: "\n\t<div (click)=\"setSelected()\" [ng-class]=\"{defaultPrimaryColor:isselected, student:true}\" [inner-html] =\"student |  studentFormatter\"></div>\n\t"
+                        template: "\n\t<div><span (click)=\"setSelected()\" [ng-class]=\"{defaultPrimaryColor:isselected, student:true}\" [inner-html] =\"student |  studentFormatter\">\n\t</span><button (click)=\"onDeleted()\">remove</button></div>\n\t"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], StudentDetails);

@@ -3,7 +3,6 @@ System.register([], function(exports_1) {
     return {
         setters:[],
         execute: function() {
-            // COMPLETE THE STUDENT CLASS
             // expose firstname, lastname and school properties
             student = (function () {
                 // your code here...
@@ -16,7 +15,6 @@ System.register([], function(exports_1) {
                 return student;
             })();
             exports_1("student", student);
-            // COMPLETE THE STUDENTTRACK CLASS
             // expose name property, expose addStudentToTrack and getStudents methods
             studenttrack = (function () {
                 function studenttrack(name) {
@@ -24,7 +22,15 @@ System.register([], function(exports_1) {
                     this.students = Array();
                 }
                 studenttrack.prototype.addStudentToTrack = function (student) {
+                    for (var st in this.students)
+                        if (this.students[st] == student)
+                            return; // student already added
                     this.students.push(student);
+                };
+                studenttrack.prototype.removeStudent = function (student) {
+                    for (var st in this.students)
+                        if (this.students[st] == student)
+                            this.students.splice(st, 1);
                 };
                 studenttrack.prototype.getStudents = function () {
                     return this.students;

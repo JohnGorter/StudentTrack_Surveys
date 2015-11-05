@@ -41,6 +41,15 @@ System.register(['angular2/angular2', '../models/student', '../services/students
                 StudentTrackService.prototype.getStudentTracks = function () {
                     return this.studentTracks;
                 };
+                StudentTrackService.prototype.getStudentTrackByName = function (trackname) {
+                    for (var st in this.studentTracks)
+                        if (this.studentTracks[st].name == trackname)
+                            return this.studentTracks[st];
+                    return undefined;
+                };
+                StudentTrackService.prototype.addStudentTrack = function (trackname) {
+                    this.studentTracks.push(new student_1.studenttrack(trackname));
+                };
                 StudentTrackService = __decorate([
                     angular2_1.Injectable(), 
                     __metadata('design:paramtypes', [studentservice_1.StudentService])

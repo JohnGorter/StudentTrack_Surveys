@@ -1,4 +1,4 @@
-System.register(['angular2/angular2', './components/studentdetails', './services/studentservice', './services/studenttrackservice'], function(exports_1) {
+System.register(['angular2/angular2', './components/studentdetails', './services/studentservice', './services/studenttrackservice', './form'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
         switch (arguments.length) {
@@ -10,7 +10,7 @@ System.register(['angular2/angular2', './components/studentdetails', './services
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var angular2_1, studentdetails_1, studentservice_1, studenttrackservice_1;
+    var angular2_1, studentdetails_1, studentservice_1, studenttrackservice_1, form_1;
     var SurveyApplication;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/angular2', './components/studentdetails', './services
             },
             function (studenttrackservice_1_1) {
                 studenttrackservice_1 = studenttrackservice_1_1;
+            },
+            function (form_1_1) {
+                form_1 = form_1_1;
             }],
         execute: function() {
             // create a class with annotations..
@@ -32,6 +35,9 @@ System.register(['angular2/angular2', './components/studentdetails', './services
                 function SurveyApplication(studenttracks) {
                     this.studenttracks = studenttracks;
                 }
+                SurveyApplication.prototype.removeStudent = function (track, student) {
+                    track.removeStudent(student);
+                };
                 SurveyApplication.prototype.setSelected = function (studenttrack, student) {
                     this.currentstudent = student;
                     this.currenttrack = studenttrack;
@@ -42,9 +48,9 @@ System.register(['angular2/angular2', './components/studentdetails', './services
                 SurveyApplication = __decorate([
                     angular2_1.Component({
                         selector: 'studenttrack-survey',
-                        directives: [angular2_1.CORE_DIRECTIVES, studentdetails_1.StudentDetails],
+                        directives: [angular2_1.FORM_DIRECTIVES, angular2_1.CORE_DIRECTIVES, studentdetails_1.StudentDetails, form_1.DemoFormSku],
                         providers: [studentservice_1.StudentService, studenttrackservice_1.StudentTrackService],
-                        template: "\n\t<div *ng-for=\"#studenttrack of studenttracks.getStudentTracks()\" class=\"studenttrack light-primary-color text-primary-color\">\n\t   <h1 class=\"dark-primary-color text-primary-color\">Studenttrack {{studenttrack.name}} (<span [text-content]=\"getCount(studenttrack)\"></span> attendees)</h1>\n\t\t<studentdetails \n\t\t\t[student]=\"student\" \n\t\t\t[isSelected]=\"currentstudent === student && currenttrack === studenttrack\"\n\t\t\t*ng-for=\"#student of studenttrack.getStudents()\" \n\t\t\t(selected)=\"setSelected(studenttrack, student)\"> \n\t\t</studentdetails>\n\t </div>\n\t",
+                        template: "\n\t<demo-form-sku></demo-form-sku>\n\t<div *ng-for=\"#studenttrack of studenttracks.getStudentTracks()\" class=\"studenttrack light-primary-color text-primary-color\">\n\t   <h1 class=\"dark-primary-color text-primary-color\">Studenttrack {{studenttrack.name}} (<span [text-content]=\"getCount(studenttrack)\"></span> attendees)</h1>\n\t\t<studentdetails \n\t\t\t[student]=\"student\" \n\t\t\t[isSelected]=\"currentstudent === student && currenttrack === studenttrack\"\n\t\t\t*ng-for=\"#student of studenttrack.getStudents()\" \n\t\t\t(deleted)=\"removeStudent(studenttrack, student)\"\n\t\t\t(selected)=\"setSelected(studenttrack, student)\"> \n\t\t</studentdetails>\n\t\t\n\t </div>\n\t",
                         styles: ["\n\t .studenttrack { border:1px solid black;margin:5px;padding:0px; }\n\t .studenttrack h1 { margin:0px;padding:15px;}\n\t"]
                     }), 
                     __metadata('design:paramtypes', [studenttrackservice_1.StudentTrackService])
