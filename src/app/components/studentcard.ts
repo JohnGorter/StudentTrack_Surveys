@@ -5,9 +5,6 @@ import {student} from '../models/student';
 import { StudentFormatter } from '../pipes/studentFormatter';
 import { StudentService } from '../services/studentservice';
 
-
-
-// YOUR COMPONENT ANNOTATION AND CLASS HERE...
 @Component({
 	selector:'student-card',
 	inputs:['student'],
@@ -26,11 +23,8 @@ import { StudentService } from '../services/studentservice';
 export class StudentCard
 {
 	student:student;
-	
 	constructor(studentservice:StudentService, routeParams:RouteParams){
-		console.log("Route Params: " + routeParams.params.id);
 		this.student = studentservice.getStudentById(routeParams.params.id); 
 		
 	}
-
 }	
